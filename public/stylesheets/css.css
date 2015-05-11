@@ -967,8 +967,8 @@ html, body {
     }
 
     #pages .home .brain {
-        transform: translate3d(-10px, -110px, 0);
-        -webkit-transform: translate3d(-10px, -110px, 0);
+        transform: translate3d(-10px, -120px, 0);
+        -webkit-transform: translate3d(-10px, -120px, 0);
     }
     #questions .a {
         transform: translate3d(0px, 5px, 0);
@@ -1025,6 +1025,14 @@ html, body {
 
 @media (min-height: 481px) and (max-height: 569px) {
 
+    #pages .home .brain {
+        transform: translate3d(-10px, -170px, 0);
+        -webkit-transform: translate3d(-10px, -170px, 0);
+    }
+    #pages .home .btn {
+        bottom: 45px;
+    }
+
     #questions .a {
         transform: translate3d(0px, -20px, 0);
         -webkit-transform: translate3d(0px, -20px, 0);
@@ -1052,8 +1060,28 @@ html, body {
     }
 
     #result .grade {
-        transform: translate3d(-10px, -175px, 0);
-        -webkit-transform: translate3d(-10px, -175px, 0);
+        transform: translate3d(-10px, -165px, 0);
+        -webkit-transform: translate3d(-10px, -165px, 0);
+    }
+
+    #result .top {
+        transform: translate3d(0, -60px, 0);
+        -webkit-transform: translate3d(0, -60px, 0);
+    }
+
+    #result .bottom {
+        transform: translate3d(0, 80px, 0);
+        -webkit-transform: translate3d(0, 80px, 0);
+    }
+
+    #result .zs {
+        transform: translate3d(0, 10px, 0);
+        -webkit-transform: translate3d(0, 10px, 0);
+    }
+
+    #result .slogan {
+        transform: translate3d(0, 40px, 0);
+        -webkit-transform: translate3d(0, 40px, 0);
     }
 
 }
