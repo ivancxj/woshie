@@ -900,6 +900,164 @@ html, body {
     right: 20px;
 }
 
+@media (max-height: 380px) {
+    #pages .home .btn {
+        bottom: 5px;
+    }
+
+    #pages .home .brain {
+        transform: translate3d(-10px, -110px, 0);
+        -webkit-transform: translate3d(-10px, -110px, 0);
+    }
+    #questions .a {
+        transform: translate3d(0px, 5px, 0);
+        -webkit-transform: translate3d(0px, 5px, 0);
+    }
+
+    #questions .b {
+        transform: translate3d(0px, 80px, 0);
+        -webkit-transform: translate3d(0px, 80px, 0);
+    }
+
+    #bg .top {
+        transform: translate3d(0, -150px, 0);
+        -webkit-transform: translate3d(0, -150px, 0);
+        opacity: 0;
+    }
+
+    #bg .slogan {
+        transform: translate3d(0, -63px, 0);
+        -webkit-transform: translate3d(0, -63px, 0);
+    }
+
+    #bg .bottom {
+        transform: translate3d(0, -40px, 0);
+        -webkit-transform: translate3d(0, -40px, 0);
+    }
+
+    #result .grade {
+        transform: translate3d(-10px, -105px, 0);
+        -webkit-transform: translate3d(-10px, -105px, 0);
+    }
+
+    #result .top {
+        transform: translate3d(0, -5px, 0);
+        -webkit-transform: translate3d(0, -5px, 0);
+    }
+
+    #result .bottom {
+        transform: translate3d(0, 100px, 0);
+        -webkit-transform: translate3d(0, 100px, 0);
+    }
+
+    #result .zs {
+        transform: translate3d(0, 55px, 0);
+        -webkit-transform: translate3d(0, 55px, 0);
+    }
+
+    #result .slogan {
+        transform: translate3d(0, 80px, 0);
+        -webkit-transform: translate3d(0, 80px, 0);
+    }
+}
+
+@media (min-height: 381px) and (max-height: 480px) {
+    #pages .home .btn {
+        bottom: 5px;
+    }
+
+    #pages .home .brain {
+        transform: translate3d(-10px, -110px, 0);
+        -webkit-transform: translate3d(-10px, -110px, 0);
+    }
+    #questions .a {
+        transform: translate3d(0px, 5px, 0);
+        -webkit-transform: translate3d(0px, 5px, 0);
+    }
+
+    #questions .b {
+        transform: translate3d(0px, 80px, 0);
+        -webkit-transform: translate3d(0px, 80px, 0);
+    }
+
+    #bg .top {
+        transform: translate3d(0, -150px, 0);
+        -webkit-transform: translate3d(0, -150px, 0);
+        opacity: 0;
+    }
+
+    #bg .slogan {
+        transform: translate3d(0, -63px, 0);
+        -webkit-transform: translate3d(0, -63px, 0);
+    }
+
+    #bg .bottom {
+        transform: translate3d(0, -40px, 0);
+        -webkit-transform: translate3d(0, -40px, 0);
+    }
+
+    #result .grade {
+        transform: translate3d(-10px, -105px, 0);
+        -webkit-transform: translate3d(-10px, -105px, 0);
+    }
+
+    #result .top {
+        transform: translate3d(0, -5px, 0);
+        -webkit-transform: translate3d(0, -5px, 0);
+    }
+
+    #result .bottom {
+        transform: translate3d(0, 100px, 0);
+        -webkit-transform: translate3d(0, 100px, 0);
+    }
+
+    #result .zs {
+        transform: translate3d(0, 55px, 0);
+        -webkit-transform: translate3d(0, 55px, 0);
+    }
+
+    #result .slogan {
+        transform: translate3d(0, 80px, 0);
+        -webkit-transform: translate3d(0, 80px, 0);
+    }
+}
+
+
+@media (min-height: 481px) and (max-height: 569px) {
+
+    #questions .a {
+        transform: translate3d(0px, -20px, 0);
+        -webkit-transform: translate3d(0px, -20px, 0);
+    }
+
+    #questions .b {
+        transform: translate3d(0px, 80px, 0);
+        -webkit-transform: translate3d(0px, 80px, 0);
+    }
+
+    #bg .top {
+        transform: translate3d(0, -150px, 0);
+        -webkit-transform: translate3d(0, -150px, 0);
+        opacity: 0;
+    }
+
+    #bg .slogan {
+        transform: translate3d(0, -63px, 0);
+        -webkit-transform: translate3d(0, -63px, 0);
+    }
+
+    #bg .bottom {
+        transform: translate3d(0, -40px, 0);
+        -webkit-transform: translate3d(0, -40px, 0);
+    }
+
+    #result .grade {
+        transform: translate3d(-10px, -175px, 0);
+        -webkit-transform: translate3d(-10px, -175px, 0);
+    }
+
+}
+
 @media (min-height: 569px) {
     #bg.in .layer .title {
         opacity: 1;
@@ -909,10 +1067,10 @@ html, body {
         -webkit-transition: all 1s .5s;
     }
 
-    #questions {
-        transform: translate3d(0, 190px, 0);
-        -webkit-transform: translate3d(0, 190px, 0)
-    }
+    /*#questions {*/
+        /*transform: translate3d(0, 190px, 0);*/
+        /*-webkit-transform: translate3d(0, 190px, 0)*/
+    /*}*/
 
     #questions.in {
         opacity: 1;
