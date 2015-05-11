@@ -15,7 +15,7 @@ html, body {
     font-family: Microsoft YaHei, sans-serif;
     opacity: 1;
     overflow: hidden;
-    background-image: url(../images/bg1.jpg);
+    background-image: url(http://static.kaishui.cn/images/bg1.jpg);
 }
 
 #load {
@@ -27,7 +27,7 @@ html, body {
 #load .rotate {
     width: 320px;
     height: 295.5px;
-    background-image: url(../images/bg2.png);
+    background-image: url(http://static.kaishui.cn/images/bg2.png);
     margin: auto;
     top: 20px;
     left: 0;
@@ -145,7 +145,7 @@ html, body {
 #pages .home .rotate {
     width: 320px;
     height: 295.5px;
-    background-image: url(../images/bg2.png);
+    background-image: url(http://static.kaishui.cn/images/bg2.png);
     margin: auto;
     top: 0;
     left: 0;
@@ -200,7 +200,7 @@ html, body {
 #pages .home .btn {
     width: 165.5px;
     height: 51.5px;
-    background-image: url(../images/pic0_10.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_10.png);
     margin: auto;
     bottom: 65px;
     left: 0;
@@ -297,7 +297,7 @@ html, body {
 #pages .home .brain {
     width: 279.5px;
     height: 164px;
-    background-image: url(../images/pic0_4.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_4.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -317,7 +317,7 @@ html, body {
 #pages .home .top {
     width: 256.5px;
     height: 28px;
-    background-image: url(../images/pic0_1.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_1.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -337,7 +337,7 @@ html, body {
 #pages .home .bottom {
     width: 257px;
     height: 23.5px;
-    background-image: url(../images/pic0_2.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_2.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -376,7 +376,7 @@ html, body {
 #bg .top {
     width: 256.5px;
     height: 28px;
-    background-image: url(../images/pic0_1.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_1.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -396,7 +396,7 @@ html, body {
 #bg .bottom {
     width: 257px;
     height: 23.5px;
-    background-image: url(../images/pic0_2.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_2.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -581,7 +581,7 @@ html, body {
 #questions .a_sel {
     width: 33.5px;
     height: 34.5px;
-    background-image: url(../images/q_sel.png);
+    background-image: url(http://static.kaishui.cn/images/q_sel.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -599,7 +599,7 @@ html, body {
 #questions .b_sel {
     width: 49.5px;
     height: 53.5px;
-    background-image: url(../images/q_sel.png);
+    background-image: url(http://static.kaishui.cn/images/q_sel.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -628,7 +628,7 @@ html, body {
 #result .rotate {
     width: 320px;
     height: 295.5px;
-    background-image: url(../images/bg2.png);
+    background-image: url(http://static.kaishui.cn/images/bg2.png);
 
     margin: auto;
     top: -65px;
@@ -659,7 +659,7 @@ html, body {
 #result .grade {
     width: 279px;
     height: 180px;
-    background-image: url(../images/result_1.png);
+    background-image: url(http://static.kaishui.cn/images/result_1.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -674,7 +674,7 @@ html, body {
     /*height: 28px;*/
     width: 281.6px;
     height: 30.8px;
-    background-image: url(../images/pic0_1.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_1.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -696,7 +696,7 @@ html, body {
     /*height: 23.5px;*/
     width: 282.7px;
     height: 25.85px;
-    background-image: url(../images/pic0_2.png);
+    background-image: url(http://static.kaishui.cn/images/pic0_2.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -832,7 +832,7 @@ html, body {
 #result .friend {
     width: 130px;
     height: 52px;
-    background-image: url(../images/result_btn_1.png);
+    background-image: url(http://static.kaishui.cn/images/result_btn_1.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -854,7 +854,7 @@ html, body {
 #result .again {
     width: 130px;
     height: 52px;
-    background-image: url(../images/result_btn_2.png);
+    background-image: url(http://static.kaishui.cn/images/result_btn_2.png);
     margin: auto;
     top: 0;
     bottom: 0;
@@ -895,7 +895,7 @@ html, body {
 #share .text {
     width: 200px;
     height: 154px;
-    background-image: url(../images/share.png);
+    background-image: url(http://static.kaishui.cn/images/share.png);
     top: 10px;
     right: 20px;
 }
@@ -944,9 +944,9 @@ html, body {
 }
 
 #bgm_btn.off {
-    background-image: url(../images/off.png);
+    background-image: url(http://static.kaishui.cn/images/off.png);
 }
 
 #bgm_btn.on {
-    background-image: url(../images/on.png);
+    background-image: url(http://static.kaishui.cn/images/on.png);
 }
