@@ -13,5 +13,5 @@ var questions = [
     { question: "《雪夜喜李郎中见访》中出现的成语是？", anwser: "B" },
     { question: "天鹅湖的作者是？", anwser: "B" },
     { question: "雪颈霜毛红网掌，的后一句是？", anwser: "B" },
-    { question: "鹅换黄庭经”的是谁？", anwser: "A" }
+    { question: "“鹅换黄庭经”的是谁？", anwser: "A" }
 ];
