@@ -193,8 +193,8 @@ html, body {
 
 #pages.in .home .slogan {
     opacity: 1;
-    transition: all 1.5s 2s;
-    -webkit-transition: all 1.5s 2s;
+    transition: all 0.5s 1s;
+    -webkit-transition: all 0.5s 1s;
 }
 
 #pages .home .btn {
