@@ -1,0 +1,355 @@
+<script>
+
+    var load = new Load(function (p) {
+        var text = $("#load .text");
+        text.html(parseInt(p * 100) + "% .  .  .  .  .  .  . ");
+    }, loadComplete, [
+        "images/bg1.jpg",
+        "images/bg2.png",
+        "images/off.png",
+        "images/on.png",
+        "images/pic0_1.png",
+        "images/pic0_2.png",
+        "images/pic0_4.png",
+        "images/pic0_10.png",
+        "images/q0_a.png",
+        "images/q0_b.png",
+        "images/q1_a.png",
+        "images/q1_b.png",
+        "images/q2_a.png",
+        "images/q2_b.png",
+        "images/q3_a.png",
+        "images/q3_b.png",
+        "images/q4_a.png",
+        "images/q4_b.png",
+        "images/q5_a.png",
+        "images/q5_b.png",
+        "images/q6_a.png",
+        "images/q6_b.png",
+        "images/q7_a.png",
+        "images/q7_b.png",
+        "images/q8_a.png",
+        "images/q8_b.png",
+        "images/q9_a.png",
+        "images/q9_b.png",
+        "images/q_sel.png",
+        "images/result_1.png",
+        "images/result_2.png",
+        "images/result_3.png",
+        "images/result_4.png",
+        "images/result_btn_1.png",
+        "images/result_btn_2.png",
+        "images/result_btn_3.png",
+        "images/score_no.png",
+        "images/score_sel.png",
+        "images/share.png"
+    ], 36);
+
+    var bgm = new Audio();
+    bgm.loop = true;
+    bgm.src = "audio/bgm.mp3";
+
+    load.Start();
+
+    var n = 0;
+    var right = 0;
+    var changing = false;
+    function loadComplete() {
+        try {
+            bgm.play();
+            $("#bgm_btn").attr("class", "on");
+        } catch (e) {
+            $("bgm_btn").attr("class", "off");
+        }
+
+        $("#bgm_btn").on("click", function () {
+            if (this.className == "on") {
+                bgm.pause();
+                $("#bgm_btn").attr("class", "off");
+                return false;
+            } else {
+                bgm.play();
+                $("#bgm_btn").attr("class", "on");
+                return false;
+            }
+        });
+
+        $("#load").addClass("out");// 去除初始化加载样式
+        $("#pages").addClass("in");
+
+        $(function () {
+
+            $("#pages").click(function (e) {
+
+                if (e.target.className == "friend") {
+                    $("#share").addClass("in");
+                }
+                if (e.target.id == "share") {
+                    $("#share").removeClass("in");
+                }
+
+//                    找老板
+                if (e.target.className == "again find_boss") {
+                    window.location.href = "http://shop2161991.koudaitong.com/v2/feature/znditikm?common%2Furl%2Fcreate=&feature%2Fznditikm=&scan=3&from=kdt"
+                }
+
+                if (e.target.className == "again") {
+                    $("#result").removeClass("in");
+                    $("#questions").addClass("in");
+                    $("#bg").addClass("in");
+                    n = 0;
+                    right = 0;
+//                    $("#q0").show();
+                    showQuestion(0);
+                    $("#questions .pro .in").removeClass("in");
+                }
+
+                if (e.target.className == "btn") {
+                    $("#pages .home").addClass("out");
+                    $("#bg").addClass("in");
+                    $("#questions").addClass("in");
+                }
+
+                if (!changing && (e.target.className == "a" || e.target.className == "b")) {
+                    changing = true;
+                    setTimeout(function changePic() {
+                        setTimeout(function () {
+                            changing = false;
+                        }, 200);
+                        var que = $("#q" + (n));
+                        que.hide();
+
+                        if ($(e.target).attr("data-value") == $(e.target).parent().attr("data-anwser")) {
+                            right++;
+                            if ($("#q" + (n + 1))[0]) {
+                                showQuestion(n + 1);
+                                n++;
+                            } else {
+                                Result(right);
+                            }
+                        } else {
+                            Result(right);
+                        }
+
+                    }, 500);
+                    $(e.target).find(".a_sel").addClass("in");
+                }
+            });
+
+            showQuestion(0);
+        });
+
+//          gesture = new Gesture(document.getElementById("pages"), {
+//              "click": function click(e) {
+//
+//              }
+//          }, function code() {
+//          });
+//          gesture.Init();
+    }
+
+    function showQuestion(n) {
+        $("#bg .slogan").html(questions[n]);
+        que1 = $("#q" + n);
+        que1.show();
+    }
+
+    function Result(right) {
+        if (right < 6) {
+            $("#result .zs .a").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(images/score_no.png)");
+            $("#result .zs .d").css("background-image", "url(images/score_no.png)");
+            $("#result .zs .e").css("background-image", "url(images/score_no.png)");
+
+            $("#result .grade").css("background-image", "url(images/result_4.png)");
+            $("#result .slogan").html("骚年，你的语文是地理老师教的吗？！" +
+                    "小鹅长老板说，你需要他。");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然被扣上了贵族的帽子，你呢？";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然被扣上了贵族的帽子，你呢？";
+        }
+        if (right == 6 || right == 7) {
+            $("#result .zs .a").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .d").css("background-image", "url(images/score_no.png)");
+            $("#result .zs .e").css("background-image", "url(images/score_no.png)");
+
+            $("#result .grade").css("background-image", "url(images/result_3.png)");
+            $("#result .slogan").html("你真的甘为平庸吗？！" +
+                    "小鹅长老板说，你的人生其实可以不这么平淡。");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然是资本家？ 有种你不是！ ";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然是资本家？ 有种你不是！";
+        }
+        if (right == 8 || right == 9) {
+            $("#result .zs .a").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .d").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .e").css("background-image", "url(images/score_no.png)");
+
+            $("#result .grade").css("background-image", "url(images/result_2.png)");
+            $("#result .slogan").html("为什么第一永远不是你！" +
+                    "小鹅长老板说，是时候来点杀手锏了！");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然是中产阶级，你们自己来试试啊！";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然是中产阶级，你们自己来试试啊！";
+        }
+        if (right == 10) {
+            $("#result .zs .a").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .d").css("background-image", "url(images/score_sel.png)");
+            $("#result .zs .e").css("background-image", "url(images/score_sel.png)");
+
+            $("#result .again").css("background-image", "url(images/result_btn_3.png)");
+            $("#result .again").addClass("find_boss");
+
+            $("#result .grade").css("background-image", "url(images/result_1.png)");
+            $("#result .slogan").html("过目不忘说的就是你！" +
+                    "鹅长老板说，他需要你。" +
+                    "只有满分，才是极致的开始！小鹅厂本次仅面向全部答对的你开放试吃。");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然是工人阶级，嘲笑的人有胆来PK！ ";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然是工人阶级，嘲笑的人有胆来PK！";
+        }
+
+        $("#bg").removeClass("in");
+        $("#questions").removeClass("in");
+        $("#result").addClass("in");
+        n = 0;
+        right = 0;
+    }
+</script>
+
+<div id="load">
+  <div class="rotate"></div>
+  <!--<div class="spanner"></div>-->
+  <div class="text">100% . . . . . . .</div>
+</div>
+<div id="pages">
+  <div class="home">
+    <div class="rotate"></div>
+    <div class="brain"></div>
+    <div class="top"></div>
+    <div class="slogan">
+      你的韶华为谁调，你的容颜为谁老?
+
+      岁月偷走了青春，也偷走了你的姿势吗?
+
+      骚年，你老了吗?
+
+    </div>
+    <div class="bottom"></div>
+    <div class="btn"></div>
+  </div>
+  <!-- 题目-->
+  <div id="bg">
+    <div class="top"></div>
+    <div class="slogan"></div>
+    <div class="bottom"></div>
+  </div>
+  <div id="questions">
+    <div id="q0" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q0_a" style="background-image:url(q0_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q0_b" style="background-image:url(../img/q0_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q1" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q1_a" style="background-image:url(../img/q1_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q1_b" style="background-image:url(../img/q1_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q2" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q2_a" style="background-image:url(../img/q2_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q2_b" style="background-image:url(../img/q2_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q3" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q3_a" style="background-image:url(../img/q3_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q3_b" style="background-image:url(../img/q3_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q4" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q4_a" style="background-image:url(../img/q4_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q4_b" style="background-image:url(../img/q4_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q5" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q5_a" style="background-image:url(../img/q5_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q5_b" style="background-image:url(../img/q5_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q6" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q6_a" style="background-image:url(../img/q6_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q6_b" style="background-image:url(../img/q6_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q7" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q7_a" style="background-image:url(../img/q7_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q7_b" style="background-image:url(../img/q7_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q8" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q8_a" style="background-image:url(../img/q8_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q8_b" style="background-image:url(../img/q8_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+    <div id="q9" class="pro" data-anwser="A">
+      <div class="a" data-value="A" id="q9_a" style="background-image:url(../img/q9_a.png)">
+        <div class="a_sel"></div>
+      </div>
+      <div class="b" data-value="B" id="q9_b" style="background-image:url(../img/q9_b.png)">
+        <div class="a_sel"></div>
+      </div>
+    </div>
+
+  </div>
+  <div id="forbid"></div>
+  <div id="result">
+    <div class="rotate"></div>
+    <div class="grade"></div>
+    <div class="top"></div>
+    <div class="zs">你的鹅毛指数：
+      <div class="a" style="background-image:url(../img/score_no.png)"></div>
+      <div class="b" style="background-image:url(../img/score_no.png)"></div>
+      <div class="c" style="background-image:url(../img/score_no.png)"></div>
+      <div class="d" style="background-image:url(../img/score_no.png)"></div>
+      <div class="e" style="background-image:url(/images/score_no.png)"></div>
+    </div>
+    <div class="slogan"></div>
+    <div class="bottom"></div>
+    <div class="friend"></div>
+    <div class="again"></div>
+    <div id="share">
+      <div class="text"></div>
+    </div>
+  </div>
+</div>
+
+<div id="bgm_btn"></div>
