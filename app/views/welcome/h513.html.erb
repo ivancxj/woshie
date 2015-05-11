@@ -1,0 +1,297 @@
+<script>
+
+    var load = new Load(function (p) {
+        var text = $("#load .text");
+        text.html(parseInt(p * 100) + "% .  .  .  .  .  .  . ");
+    }, loadComplete, [
+//        "http://static.kaishui.cn/images/bg1.jpg",
+//        "http://static.kaishui.cn/images/bg2.png",
+        "http://static.kaishui.cn/images/off.png",
+        "http://static.kaishui.cn/images/on.png",
+        "http://static.kaishui.cn/images/pic0_1.png",
+        "http://static.kaishui.cn/images/pic0_2.png",
+        "http://static.kaishui.cn/images/pic0_4.png",
+        "http://static.kaishui.cn/images/pic0_10.png",
+        "http://static.kaishui.cn/images/q0_a.png",
+        "http://static.kaishui.cn/images/q0_b.png",
+        "http://static.kaishui.cn/images/q1_a.png",
+        "http://static.kaishui.cn/images/q1_b.png",
+        "http://static.kaishui.cn/images/q2_a.png",
+        "http://static.kaishui.cn/images/q2_b.png",
+        "http://static.kaishui.cn/images/q3_a.png",
+        "http://static.kaishui.cn/images/q3_b.png",
+        "http://static.kaishui.cn/images/q4_a.png",
+        "http://static.kaishui.cn/images/q4_b.png",
+        "http://static.kaishui.cn/images/q5_a.png",
+        "http://static.kaishui.cn/images/q5_b.png",
+        "http://static.kaishui.cn/images/q6_a.png",
+        "http://static.kaishui.cn/images/q6_b.png",
+        "http://static.kaishui.cn/images/q7_a.png",
+        "http://static.kaishui.cn/images/q7_b.png",
+        "http://static.kaishui.cn/images/q8_a.png",
+        "http://static.kaishui.cn/images/q8_b.png",
+        "http://static.kaishui.cn/images/q9_a.png",
+        "http://static.kaishui.cn/images/q9_b.png",
+        "http://static.kaishui.cn/images/q_sel.png",
+//        "http://static.kaishui.cn/images/result_1.png",
+//        "http://static.kaishui.cn/images/result_2.png",
+//        "http://static.kaishui.cn/images/result_3.png",
+//        "http://static.kaishui.cn/images/result_4.png",
+        "http://static.kaishui.cn/images/result_btn_1.png",
+        "http://static.kaishui.cn/images/result_btn_2.png",
+        "http://static.kaishui.cn/images/result_btn_3.png",
+        "http://static.kaishui.cn/images/score_no.png",
+        "http://static.kaishui.cn/images/score_sel.png",
+        "http://static.kaishui.cn/images/share.png"
+    ], 30);
+
+    var bgm = new Audio();
+    bgm.loop = true;
+    bgm.src = "http://static.kaishui.cn/audio/bgm.mp3";
+
+    load.Start();
+
+    var n = 0;
+    var right = 0;
+    var changing = false;
+    function loadComplete() {
+        try {
+            bgm.play();
+            $("#bgm_btn").attr("class", "on");
+        } catch (e) {
+            $("bgm_btn").attr("class", "off");
+        }
+
+        $("#bgm_btn").on("click", function () {
+            if (this.className == "on") {
+                bgm.pause();
+                $("#bgm_btn").attr("class", "off");
+                return false;
+            } else {
+                bgm.play();
+                $("#bgm_btn").attr("class", "on");
+                return false;
+            }
+        });
+
+        $("#load").addClass("out");// 去除初始化加载样式
+        $("#pages").addClass("in");
+
+        $(function () {
+
+//            预先加载图片
+            setTimeout(function () {
+                var images = [
+                    "http://static.kaishui.cn/images/result_1.png",
+                    "http://static.kaishui.cn/images/result_2.png",
+                    "http://static.kaishui.cn/images/result_3.png",
+                    "http://static.kaishui.cn/images/result_4.png"
+                ];
+
+                for (var i = 0; i < images.length; i++) {
+                    var img = new Image();
+                    img.src = images[i];
+                }
+            }, 1000);
+
+
+
+
+            $("#pages").click(function (e) {
+
+                if (e.target.className == "friend") {
+                    $("#share").addClass("in");
+                }
+                if (e.target.id == "share") {
+                    $("#share").removeClass("in");
+                }
+
+//                    找老板
+                if (e.target.className == "again find_boss") {
+                    window.location.href = "http://shop2161991.koudaitong.com/v2/feature/znditikm?common%2Furl%2Fcreate=&feature%2Fznditikm=&scan=3&from=kdt"
+                }
+
+                if (e.target.className == "again") {
+                    $("#result").removeClass("in");
+                    $("#questions").addClass("in");
+                    $("#bg").addClass("in");
+                    n = 0;
+                    right = 0;
+
+                    showQuestion(0);
+                    $("#questions .pro .in").removeClass("in");
+                }
+
+                if (e.target.className == "btn") {
+                    $("#pages .home").addClass("out");
+                    $("#bg").addClass("in");
+                    $("#questions").addClass("in");
+                }
+
+                if (!changing && (e.target.className == "a" || e.target.className == "b")) {
+                    changing = true;
+                    setTimeout(function changePic() {
+                        setTimeout(function () {
+                            changing = false;
+                        }, 200);
+                        var que = $("#q" + (n));
+                        que.hide();
+
+                        if ($(e.target).attr("data-value") == $(e.target).parent().attr("data-anwser")) {
+                            right++;
+                            if ($("#q" + (n + 1))[0]) {
+                                showQuestion(n + 1);
+                                n++;
+                            } else {
+                                Result(right);
+                            }
+                        } else {
+                            Result(right);
+                        }
+
+                    }, 1000);
+                    $(e.target).find(".a_sel").addClass("in");
+                }
+            });
+
+            var questionsStr = "";
+            for (var i = 0; i < questions.length; i++) {
+                questionsStr += "<div id='q" + i + "' class='pro' data-anwser='" + questions[i].anwser + "'>";
+                questionsStr += "<div class='a' data-value='A' id='q" + i + "_a'" + "style='background-image:url(http://static.kaishui.cn/images/q" + i + "_a.png)'" + ">";
+                questionsStr += "<div class='a_sel'></div></div>";
+                questionsStr += "<div class='b' data-value='B' id='q" + i + "_b'" + "style='background-image:url(http://static.kaishui.cn/images/q" + i + "_b.png)'" + ">";
+                questionsStr += "<div class='a_sel'></div></div>";
+                questionsStr += "</div>";
+            }
+
+            $("#questions").html(questionsStr);
+
+
+            showQuestion(0);
+        });
+
+    }
+
+    function showQuestion(n) {
+        $("#bg .slogan").html(questions[n].question);
+        que1 = $("#q" + n);
+        que1.show();
+    }
+
+    function Result(right) {
+        if (right < 6) {
+            $("#result .zs .a").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(http://static.kaishui.cn/images/score_no.png)");
+            $("#result .zs .d").css("background-image", "url(http://static.kaishui.cn/images/score_no.png)");
+            $("#result .zs .e").css("background-image", "url(http://static.kaishui.cn/images/score_no.png)");
+
+            $("#result .grade").css("background-image", "url(http://static.kaishui.cn/images/result_4.png)");
+            $("#result .slogan").html("骚年，你的语文是地理老师教的吗？！" +
+                    "小鹅长老板说，你需要他。");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然被扣上了贵族的帽子，你呢？";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然被扣上了贵族的帽子，你呢？";
+        }
+        if (right == 6 || right == 7) {
+            $("#result .zs .a").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .d").css("background-image", "url(http://static.kaishui.cn/images/score_no.png)");
+            $("#result .zs .e").css("background-image", "url(http://static.kaishui.cn/images/score_no.png)");
+            http://static.kaishui.cn/
+                    $("#result .grade").css("background-image", "url(http://static.kaishui.cn/images/result_3.png)");
+            $("#result .slogan").html("你真的甘为平庸吗？！" +
+                    "小鹅长老板说，你的人生其实可以不这么平淡。");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然是资本家？ 有种你不是！ ";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然是资本家？ 有种你不是！";
+        }
+        if (right == 8 || right == 9) {
+            $("#result .zs .a").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .d").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .e").css("background-image", "url(http://static.kaishui.cn/images/score_no.png)");
+
+            $("#result .grade").css("background-image", "url(http://static.kaishui.cn/images/result_2.png)");
+            $("#result .slogan").html("为什么第一永远不是你！" +
+                    "小鹅长老板说，是时候来点杀手锏了！");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然是中产阶级，你们自己来试试啊！";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然是中产阶级，你们自己来试试啊！";
+        }
+        if (right == 10) {
+            $("#result .zs .a").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .b").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .c").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .d").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+            $("#result .zs .e").css("background-image", "url(http://static.kaishui.cn/images/score_sel.png)");
+
+            $("#result .again").css("background-image", "url(http://static.kaishui.cn/images/result_btn_3.png)");
+            $("#result .again").addClass("find_boss");
+
+            $("#result .grade").css("background-image", "url(http://static.kaishui.cn/images/result_1.png)");
+            $("#result .slogan").html("过目不忘说的就是你！" +
+                    "鹅长老板说，他需要你。" +
+                    "只有满分，才是极致的开始！小鹅厂本次仅面向全部答对的你开放试吃。");
+//                wxconfig.title = "我在劳动人民大普查中答对了" + right + "道题，居然是工人阶级，嘲笑的人有胆来PK！ ";
+//                wxconfig.desc = "我在劳动人民大普查中答对了" + right + "道题，居然是工人阶级，嘲笑的人有胆来PK！";
+        }
+
+        $("#bg").removeClass("in");
+        $("#questions").removeClass("in");
+        $("#result").addClass("in");
+        n = 0;
+        right = 0;
+    }
+</script>
+
+<div id="load">
+  <div class="rotate"></div>
+  <!--<div class="spanner"></div>-->
+  <div class="text"></div>
+</div>
+<div id="pages">
+  <div class="home">
+    <div class="rotate"></div>
+    <div class="brain"></div>
+    <div class="top"></div>
+    <div class="slogan">
+      你的韶华为谁调，你的容颜为谁老?
+
+      岁月偷走了青春，也偷走了你的姿势吗?
+
+      骚年，你老了吗?
+
+    </div>
+    <div class="bottom"></div>
+    <div class="btn"></div>
+  </div>
+  <!-- 题目-->
+  <div id="bg">
+    <div class="top"></div>
+    <div class="slogan"></div>
+    <div class="bottom"></div>
+  </div>
+  <div id="questions"></div>
+  <!--<div id="forbid"></div>-->
+  <div id="result">
+    <div class="rotate"></div>
+    <div class="grade"></div>
+    <div class="top"></div>
+    <div class="zs">你的鹅毛指数：
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+      <div class="d"></div>
+      <div class="e"></div>
+    </div>
+    <div class="slogan"></div>
+    <div class="bottom"></div>
+    <div class="friend"></div>
+    <div class="again"></div>
+    <div id="share">
+      <div class="text"></div>
+    </div>
+  </div>
+</div>
+
+<div id="bgm_btn"></div>
