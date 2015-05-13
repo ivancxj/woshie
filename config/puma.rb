@@ -1,6 +1,7 @@
 #!/usr/bin/env puma
 
-environment 'production'
+# environment 'production'
+environment ENV['RAILS_ENV'] || 'production'
 daemonize true
 
 wd          = File.expand_path('../../', __FILE__)
@@ -15,3 +16,7 @@ threads 0, 32
 bind 'tcp://0.0.0.0:3000'
 
 workers 0
+
+# Preload the application before starting the workers; this conflicts with
+# phased restart feature. (off by default)
+preload_app!
